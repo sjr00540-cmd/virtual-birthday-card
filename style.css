@@ -1,0 +1,168 @@
+/* Body & card */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #cfe9ff, #e6f3ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* Cake */
+.cake {
+    margin: 20px 0;
+    position: relative;
+}
+
+.candles {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+.candle {
+    width: 10px;
+    height: 30px;
+    background: gold;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 0 6px rgba(255,223,0,0.6);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.candle::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: orange;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+    box-shadow: 0 0 6px orange;
+}
+
+.candle.lit::after {
+    opacity: 1;
+    animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-2px) scale(1.1); opacity: 0.8; }
+    100% { transform: translateY(1px) scale(0.9); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 4px rgba(255,223,0,0.6); }
+    50% { box-shadow: 0 0 12px rgba(255,223,0,0.9); }
+    100% { box-shadow: 0 0 4px rgba(255,223,0,0.6); }
+}
+
+.cake-body {
+    font-size: 60px;
+    text-shadow: 0 0 10px #fff;
+}
+
+/* Gift */
+.gift {
+    background: #4a90e2;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.gift:active {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Letter */
+.hidden {
+    display: none;
+}
+
+.letter {
+    background: #f0f8ff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    color: black;
+}
+
+/* Confetti */
+#confetti-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10px) rotate(0deg); }
+    to   { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* Sparkles */
+.sparkle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: sparkle 1.5s ease-out forwards;
+    z-index: 1500;
+}
+
+@keyframes sparkle {
+    from { transform: scale(0) translateY(0); opacity: 1; }
+    to   { transform: scale(1.5) translateY(-50px); opacity: 0; }
+}
+
+/* Floating sparkles around cake */
+.floating-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ffffffaa;
+    border-radius: 50%;
+    animation: floatSparkle 3s infinite;
+}
+
+@keyframes floatSparkle {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-20px) translateX(10px) scale(1.3); opacity: 1; }
+    100% { transform: translateY(0) translateX(-10px) scale(1); opacity: 0.7; }
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+    .card { width: 90%; padding: 20px; }
+    h1 { font-size: 22px; }
+    .cake-body { font-size: 50px; }
+    .gift { font-size: 16px; }
+}
